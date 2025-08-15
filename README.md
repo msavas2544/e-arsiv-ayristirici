@@ -1,46 +1,31 @@
-# E‑Arşiv / E‑Fatura Ayrıştırıcı (MVP)
+# e-arsiv-ayristirici
 
-Türk e‑Arşiv/e‑Fatura PDF ve HTML dosyalarından temel alanları ayrıştırıp SQLite veritabanına kaydeden basit bir FastAPI servisi.
+Basit bir Python kütüphanesi ve CLI aracı. Amaç: e-Arşiv benzeri dosyalardan (ilk aşamada düz metin/HTML/XML) temel bilgileri ayrıştırmak için bir iskelet sunmak.
 
-## Özellikler (MVP)
-- PDF ve HTML içe aktarma (tek dosya)
-- Alanlar: Fatura No, Tarih, Satıcı, Para Birimi (TRY), Genel Toplam
-- SQLite kalıcılık, listeleme endpoint'i
-- CI: pytest çalıştırma
-
-> Not: Ayrıştırıcı basit regex kurallarıyla çalışır; sağlayıcıya göre şablonlar farklı olabilir. Zamanla sağlayıcı‑özel kural setleri ve tablo satırları (kalemler) eklenecek.
+Durum: Bu, başlangıç iskeletidir. PDF ayrıştırma henüz eklenmedi.
 
 ## Kurulum
+- Python 3.10+
+- (İsteğe bağlı) Sanal ortam kullanın
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload
 ```
 
-Arayüz: http://127.0.0.1:8000/docs
-
-## API
-
-- GET `/health` — sağlık kontrolü
-- POST `/import/file` — tek PDF/HTML yükle
-- GET `/invoices` — kayıtlı faturaları listele
-
-## Docker
-
+## Kullanım
 ```bash
-docker build -t e-arsiv-ayristirici .
-docker run -p 8000:8000 -v $(pwd)/data.db:/app/data.db e-arsiv-ayristirici
+# JSON çıktı ile
+python -m e_arsiv_ayristirici.cli parse ./ornek.txt --format json
+
+# Düz metin çıktısı ile
+python -m e_arsiv_ayristirici.cli parse ./ornek.html --format text
 ```
 
-## Yol Haritası
-- [ ] Sağlayıcı‑özel şablonlar (GİB, özel entegratörler)
-- [ ] Kalem (items) çıkarımı ve KDV hesabı
-- [ ] Toplu içe aktarma ve IMAP okuma
-- [ ] CSV/Excel dışa aktarma
-- [ ] Basit web UI (Svelte/React)
-- [ ] Test kapsamı ve örnek veri seti
+## Geliştirme
+- PDF desteği eklemek için `parser.py` içindeki `parse_invoice` fonksiyonunu genişletin.
+- İhtiyaç halinde `requirements.txt` içine bağımlılıkları ekleyin (ör. pdfminer.six, PyMuPDF, beautifulsoup4, lxml).
 
-## Lisans
-MIT
+---
+Lisans: MIT (bkz. LICENSE)

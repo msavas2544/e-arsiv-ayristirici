@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<invoice>
+    <header>
+        <invoice_number>XML-2025-789</invoice_number>
+        <issue_date>2025-08-16</issue_date>
+    </header>
+    <parties>
+        <seller>XML Çözümleri A.Ş.</seller>
+        <buyer>Teknoloji Merkezi Ltd.</buyer>
+    </parties>
+    <totals>
+        <total_amount currency="TRY">3,999.99</total_amount>
+    </totals>
+</invoice>

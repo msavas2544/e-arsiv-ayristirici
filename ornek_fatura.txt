@@ -1,0 +1,7 @@
+Fatura No: FAT-2025-001
+Tarih: 16.08.2025
+Satıcı: Örnek Şirket A.Ş.
+Alıcı: Test Müşteri Ltd.
+Tutar: 1,250.00 TL
+
+Bu bir örnek e-arşiv fatura dosyasıdır.
